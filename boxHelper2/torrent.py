@@ -6,13 +6,13 @@ class Torrent:
         self.download_link = download_link
         self.upload_time = upload_time
         self.size = -1
-        self.uploader = ""
+        self.promotions = -1
 
     def __str__(self) -> str:
-        return "Title:%s - size:%d - detail_link:%s - download_link:%s - uploader:%s - upload_time:%s "%(self.title, self.size, self.detail_link, self.download_link, self.uploader, self.upload_time)
+        return "Title:%s - size:%d - detail_link:%s - download_link:%s - upload_time:%s - promotions:%d"%(self.title, self.size, self.detail_link, self.download_link, self.upload_time, self.promotions)
 
     def set_size(self, size):
         self.size = size # MB
-        
-    def set_uploader(self, uploader):
-        self.uploader = uploader
+
+    def set_promotions(self, pro):
+        self.promotions = pro
