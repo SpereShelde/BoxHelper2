@@ -5,20 +5,21 @@ import re
 ##过滤HTML中的标签
 # 将HTML中标签等信息去掉
 # @param htmlstr HTML字符串.
-def filter_tags(htmlstr, title_reg):
+def filter_tags(htmlstr, title_reg_list):
     # 先过滤CDATA
     re_cdata = re.compile('//<!\[CDATA\[[^>]*//\]\]>', re.I)  # 匹配CDATA
     re_script = re.compile('<\s*script[^>]*>[^<]*<\s*/\s*script\s*>', re.I)  # Script
     re_style = re.compile('<\s*style[^>]*>[^<]*<\s*/\s*style\s*>', re.I)  # style
-    re_free = re.compile('<img[^>]*?[Ff]ree[^>]*?/?>')  # 处理free
+    re_free = re.compile('<img[^>]*?[Ff]ree[^>]')  # 处理free
     re_br = re.compile('<br\s*?/?>')  # 处理换行
     re_h = re.compile('</?\w+[^>]*>')  # HTML标签
     re_comment = re.compile('<!--[^>]*-->')  # HTML注释
     s = re_cdata.sub('', htmlstr)  # 去掉CDATA
     s = re_script.sub('', s)  # 去掉SCRIPT
     s = re_style.sub('', s)  # 去掉style
-    s = replace_title(s, title_reg)
-    s = re_free.sub('BFreeH', s)  # 将free img转换为free
+    for pattern in title_reg_list:
+        s = replace_title(s, pattern)  # Replace labeled title with pure title
+    s = re_free.sub('<span>BFREEH</span><k', s)  # 将free img转换为free
     s = re_br.sub('\n', s)  # 将br转换为换行
     s = re_h.sub('', s)  # 去掉HTML 标签
     s = re_comment.sub('', s)  # 去掉HTML注释
@@ -34,8 +35,7 @@ def replace_title(htmlstr, title_reg):
     while res is not None:
         whole_title = res.group(0)
         title = res.group(1)
-        n_reg = re.compile(whole_title)
-        htmlstr = n_reg.sub(title, htmlstr)
+        htmlstr = htmlstr.replace(whole_title, '<span>TITLE: '+title+' :END</span><k')
         res = regex.search(htmlstr)
     return htmlstr
 
@@ -63,9 +63,3 @@ def replace_char_entity(htmlstr):
             htmlstr = re_charEntity.sub('', htmlstr, 1)
             sz = re_charEntity.search(htmlstr)
     return htmlstr
-
-if __name__ == '__main__':
-    f = open('a.html')
-    s = f.read()
-    news = filter_tags(s)
-    print(news)

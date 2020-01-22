@@ -4,9 +4,9 @@ import configparser
 import re
 from collections import Counter
 import time
+import urllib.request
 
 from boxHelper2 import html_parser, torrent
-from boxHelper2.html_helper import HtmlHelper
 from boxHelper2.torrent import Torrent
 
 
@@ -28,8 +28,9 @@ class TorrentCollector:
 
     #Collect torrents based on rss
     def collect(self):
-        htmlHelper = HtmlHelper(self.url, self.headers)
-        raw = htmlHelper.get_source() #获取网站源码
+        request = urllib.request.Request(url=self.url, headers=self.headers)
+        response = urllib.request.urlopen(request)
+        raw = response.read().decode('utf-8')  # 获取网站源码
         text_by_line = html_parser.filter_tags(raw).split("\n") #去掉标签然后按行存入list
         feed = feedparser.parse(self.rss) #从rss读取items
         torrent_list = []
@@ -90,6 +91,6 @@ class TorrentCollector:
             #     # 如果发生错误则回滚
             #     db.rollback()
             # print(torrent_list[i])
-                    
+
 
 

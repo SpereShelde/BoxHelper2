@@ -1,6 +1,7 @@
+import time
 class Torrent:
 
-    def __init__(self, title, detail_link, download_link, upload_time):
+    def __init__(self, title, *, detail_link="", download_link="", uploader="", upload_time=int(time.time())):
         self.title = title
         self.detail_link = detail_link
         self.download_link = download_link
