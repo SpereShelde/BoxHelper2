@@ -27,6 +27,7 @@ def filter_tags(htmlstr, title_reg_list):
     blank_line = re.compile('\n+')
     s = blank_line.sub('\n', s)
     s = replace_char_entity(s)  # 替换实体
+    # print(s)
     return s
 
 def replace_title(htmlstr, title_reg):

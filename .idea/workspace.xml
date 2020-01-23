@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="afe3114a-27a9-4f52-8666-7311318f00f7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/boxHelper2/html_helper.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/boxHelper.log" afterPath="$PROJECT_DIR$/boxHelper.log" />
+      <change beforePath="$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py" afterPath="$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py" />
       <change beforePath="$PROJECT_DIR$/boxHelper2/html_parser.py" afterPath="$PROJECT_DIR$/boxHelper2/html_parser.py" />
-      <change beforePath="$PROJECT_DIR$/boxHelper2/torrent.py" afterPath="$PROJECT_DIR$/boxHelper2/torrent.py" />
-      <change beforePath="$PROJECT_DIR$/boxHelper2/torrent_collector.py" afterPath="$PROJECT_DIR$/boxHelper2/torrent_collector.py" />
-      <change beforePath="$PROJECT_DIR$/boxHelper2/torrent_collector2.py" afterPath="$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py" />
       <change beforePath="$PROJECT_DIR$/boxHelper2/torrent_controller.py" afterPath="$PROJECT_DIR$/boxHelper2/torrent_controller.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,10 +18,11 @@
     <SUITE FILE_PATH="coverage/boxHelper2$torrent_collector.coverage" NAME="torrent_collector Coverage Results" MODIFIED="1579492278770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/include/boxHelper2" />
     <SUITE FILE_PATH="coverage/boxHelper2$torrentCollector.coverage" NAME="torrentCollector Coverage Results" MODIFIED="1579474393760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/include/tools" />
     <SUITE FILE_PATH="coverage/boxHelper2$test.coverage" NAME="test Coverage Results" MODIFIED="1579665950598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/boxHelper2" />
-    <SUITE FILE_PATH="coverage/boxHelper2$torrent_collector2.coverage" NAME="torrent_collector2 Coverage Results" MODIFIED="1579666403876" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/boxHelper2" />
+    <SUITE FILE_PATH="coverage/boxHelper2$torrent_collector2.coverage" NAME="torrent_collector2 Coverage Results" MODIFIED="1579754220183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/boxHelper2" />
     <SUITE FILE_PATH="coverage/boxHelper2$torrent_collector__1_.coverage" NAME="torrent_collector (1) Coverage Results" MODIFIED="1579548608877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/boxHelper2" />
     <SUITE FILE_PATH="coverage/boxHelper2$urlibTest.coverage" NAME="urlibTest Coverage Results" MODIFIED="1579470681086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/include" />
     <SUITE FILE_PATH="coverage/boxHelper2$html_parser.coverage" NAME="html_parser Coverage Results" MODIFIED="1579481442448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/include/boxHelper2" />
+    <SUITE FILE_PATH="coverage/boxHelper2$torrent_controller__1_.coverage" NAME="torrent_controller (1) Coverage Results" MODIFIED="1579754298035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/boxHelper2" />
     <SUITE FILE_PATH="coverage/boxHelper2$torrent_controller.coverage" NAME="torrent_controller Coverage Results" MODIFIED="1579488365619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/include/boxHelper2" />
   </component>
   <component name="FileEditorManager">
@@ -32,7 +30,7 @@
       <file leaf-file-name="torrent_collector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/boxHelper2/torrent_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
+            <state relative-caret-position="1380">
               <caret line="92" column="28" lean-forward="false" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
@@ -45,8 +43,8 @@
       <file leaf-file-name="torrent_controller.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/boxHelper2/torrent_controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+            <state relative-caret-position="480">
+              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -57,28 +55,18 @@
       <file leaf-file-name="auto_torrent_collector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3000">
-              <caret line="200" column="0" lean-forward="true" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
+            <state relative-caret-position="611">
+              <caret line="226" column="0" lean-forward="true" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
-                <marker date="1579666635766" expanded="true" signature="5956:6016" ph="SELECT * FRO... torrents_collected" />
-                <marker date="1579666635766" expanded="true" signature="5956:6019" ph="SELECT * FRO... torrents_collected" />
-                <marker date="1579666635766" expanded="true" signature="5956:6020" ph="SELECT get_t... torrents_collected" />
-                <marker date="1579666635766" expanded="true" signature="6325:6385" ph="UPDATE torrents_collected... " />
-                <marker date="1579666635766" expanded="true" signature="6325:6429" ph="UPDATE torrents_collected... " />
-                <marker date="1579666635766" expanded="true" signature="6325:6430" ph="UPDATE torrents_collected... " />
-                <marker date="1579666635766" expanded="true" signature="6325:6432" ph="UPDATE torrents_collected... " />
-                <marker date="1579666635766" expanded="true" signature="6325:6433" ph="UPDATE torrents_collected... " />
-                <marker date="1579666635766" expanded="true" signature="6570:6656" ph="UPDATE torrents_collected... " />
-                <marker date="1579666635766" expanded="true" signature="6570:6660" ph="UPDATE torrents_collected... " />
-                <marker date="1579666635766" expanded="true" signature="7053:7205" ph="INSERT INTO torrents_collected... " />
-                <marker date="1579666635766" expanded="true" signature="7850:7907" ph="SELECT detai... torrents_collected" />
-                <marker date="1579666635766" expanded="true" signature="7850:7911" ph="SELECT detai... torrents_collected" />
-                <marker date="1579666635766" expanded="true" signature="8388:8486" ph="UPDATE torrents_collected... " />
-                <marker date="1579666635766" expanded="true" signature="8388:8490" ph="UPDATE torrents_collected... " />
-                <marker date="1579666635766" expanded="true" signature="8629:8709" ph="UPDATE torrents_collected... " />
-                <marker date="1579666635766" expanded="true" signature="8629:8713" ph="UPDATE torrents_collected... " />
-                <marker date="1579666635766" expanded="true" signature="9124:9276" ph="INSERT INTO torrents_collected... " />
+                <marker date="1579755638437" expanded="true" signature="6577:6641" ph="SELECT get_t... torrents_collected" />
+                <marker date="1579755638437" expanded="true" signature="6922:7030" ph="UPDATE torrents_collected... " />
+                <marker date="1579755638437" expanded="true" signature="7180:7270" ph="UPDATE torrents_collected... " />
+                <marker date="1579755638437" expanded="true" signature="7660:7812" ph="INSERT INTO torrents_collected... " />
+                <marker date="1579755638437" expanded="true" signature="8435:8496" ph="SELECT detai... torrents_collected" />
+                <marker date="1579755638437" expanded="true" signature="8937:9039" ph="UPDATE torrents_collected... " />
+                <marker date="1579755638437" expanded="true" signature="9195:9279" ph="UPDATE torrents_collected... " />
+                <marker date="1579755638437" expanded="true" signature="9691:9843" ph="INSERT INTO torrents_collected... " />
               </folding>
             </state>
           </provider>
@@ -97,8 +85,8 @@
       <file leaf-file-name="config.ini" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="100" lean-forward="false" selection-start-line="22" selection-start-column="100" selection-end-line="22" selection-end-column="100" />
+            <state relative-caret-position="375">
+              <caret line="25" column="7" lean-forward="false" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -107,8 +95,8 @@
       <file leaf-file-name="html_parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/boxHelper2/html_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state relative-caret-position="71">
+              <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -150,10 +138,18 @@
       <find>PRINT</find>
       <find>CON</find>
       <find>self.</find>
+      <find>get_time</find>
+      <find>torrent_list</find>
+      <find>str(i)</find>
+      <find>04</find>
+      <find>free</find>
+      <find>source</find>
     </findStrings>
     <replaceStrings>
       <replace>self.config</replace>
       <replace>pre_torrent</replace>
+      <replace>1</replace>
+      <replace>&quot;1&quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -181,12 +177,12 @@
         <option value="$PROJECT_DIR$/boxHelper2/torrent_collector2.py" />
         <option value="$PROJECT_DIR$/boxHelper2/torrent_collector.py" />
         <option value="$PROJECT_DIR$/boxHelper2/torrent.py" />
+        <option value="$PROJECT_DIR$/boxHelper2/test.py" />
+        <option value="$PROJECT_DIR$/boxHelper.log" />
+        <option value="$PROJECT_DIR$/boxHelper2/torrent_controller.py" />
+        <option value="$PROJECT_DIR$/boxHelper2/html_parser.py" />
         <option value="$PROJECT_DIR$/config.ini" />
         <option value="$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py" />
-        <option value="$PROJECT_DIR$/boxHelper2/html_parser.py" />
-        <option value="$PROJECT_DIR$/boxHelper2/test.py" />
-        <option value="$PROJECT_DIR$/boxHelper2/torrent_controller.py" />
-        <option value="$PROJECT_DIR$/boxHelper.log" />
       </list>
     </option>
   </component>
@@ -233,6 +229,24 @@
               <item name="boxHelper2" type="462c0819:PsiDirectoryNode" />
               <item name="boxHelper2" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="boxHelper2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="boxHelper2" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="boxHelper2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="boxHelper2" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="python3.7" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="boxHelper2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="boxHelper2" type="462c0819:PsiDirectoryNode" />
+              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="python3.7" type="462c0819:PsiDirectoryNode" />
+              <item name="site-packages" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -267,7 +281,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.torrent_collector2">
+  <component name="RunManager" selected="Python.torrent_controller (1)">
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -344,20 +358,20 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="torrent_controller" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="torrent_controller (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/include/boxHelper2" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/boxHelper2" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="boxHelper2" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/include/boxHelper2/torrent_controller.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/boxHelper2/torrent_controller.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -365,18 +379,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.torrent_collector" />
-      <item index="1" class="java.lang.String" itemvalue="Python.torrent_controller" />
-      <item index="2" class="java.lang.String" itemvalue="Python.torrent_collector (1)" />
-      <item index="3" class="java.lang.String" itemvalue="Python.test" />
-      <item index="4" class="java.lang.String" itemvalue="Python.torrent_collector2" />
+      <item index="1" class="java.lang.String" itemvalue="Python.torrent_collector (1)" />
+      <item index="2" class="java.lang.String" itemvalue="Python.test" />
+      <item index="3" class="java.lang.String" itemvalue="Python.torrent_collector2" />
+      <item index="4" class="java.lang.String" itemvalue="Python.torrent_controller (1)" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.torrent_collector2" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test" />
-        <item index="2" class="java.lang.String" itemvalue="Python.torrent_collector (1)" />
-        <item index="3" class="java.lang.String" itemvalue="Python.torrent_collector" />
-        <item index="4" class="java.lang.String" itemvalue="Python.torrent_controller" />
+        <item index="0" class="java.lang.String" itemvalue="Python.torrent_controller (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python.torrent_collector2" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test" />
+        <item index="3" class="java.lang.String" itemvalue="Python.torrent_collector (1)" />
+        <item index="4" class="java.lang.String" itemvalue="Python.torrent_collector" />
       </list>
     </recent_temporary>
   </component>
@@ -402,7 +416,7 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32832617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21244635" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -412,7 +426,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3444206" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19420601" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -430,6 +444,13 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py</url>
+          <line>76</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -437,7 +458,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="27" />
+      <option name="time" value="42" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -576,44 +597,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.ini">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="100" lean-forward="false" selection-start-line="22" selection-start-column="100" selection-end-line="22" selection-end-column="100" />
+        <state relative-caret-position="375">
+          <caret line="25" column="7" lean-forward="false" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3000">
-          <caret line="200" column="0" lean-forward="true" selection-start-line="200" selection-start-column="0" selection-end-line="200" selection-end-column="0" />
+        <state relative-caret-position="611">
+          <caret line="226" column="0" lean-forward="true" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
-            <marker date="1579666635766" expanded="true" signature="5956:6016" ph="SELECT * FRO... torrents_collected" />
-            <marker date="1579666635766" expanded="true" signature="5956:6019" ph="SELECT * FRO... torrents_collected" />
-            <marker date="1579666635766" expanded="true" signature="5956:6020" ph="SELECT get_t... torrents_collected" />
-            <marker date="1579666635766" expanded="true" signature="6325:6385" ph="UPDATE torrents_collected... " />
-            <marker date="1579666635766" expanded="true" signature="6325:6429" ph="UPDATE torrents_collected... " />
-            <marker date="1579666635766" expanded="true" signature="6325:6430" ph="UPDATE torrents_collected... " />
-            <marker date="1579666635766" expanded="true" signature="6325:6432" ph="UPDATE torrents_collected... " />
-            <marker date="1579666635766" expanded="true" signature="6325:6433" ph="UPDATE torrents_collected... " />
-            <marker date="1579666635766" expanded="true" signature="6570:6656" ph="UPDATE torrents_collected... " />
-            <marker date="1579666635766" expanded="true" signature="6570:6660" ph="UPDATE torrents_collected... " />
-            <marker date="1579666635766" expanded="true" signature="7053:7205" ph="INSERT INTO torrents_collected... " />
-            <marker date="1579666635766" expanded="true" signature="7850:7907" ph="SELECT detai... torrents_collected" />
-            <marker date="1579666635766" expanded="true" signature="7850:7911" ph="SELECT detai... torrents_collected" />
-            <marker date="1579666635766" expanded="true" signature="8388:8486" ph="UPDATE torrents_collected... " />
-            <marker date="1579666635766" expanded="true" signature="8388:8490" ph="UPDATE torrents_collected... " />
-            <marker date="1579666635766" expanded="true" signature="8629:8709" ph="UPDATE torrents_collected... " />
-            <marker date="1579666635766" expanded="true" signature="8629:8713" ph="UPDATE torrents_collected... " />
-            <marker date="1579666635766" expanded="true" signature="9124:9276" ph="INSERT INTO torrents_collected... " />
+            <marker date="1579755638437" expanded="true" signature="6577:6641" ph="SELECT get_t... torrents_collected" />
+            <marker date="1579755638437" expanded="true" signature="6922:7030" ph="UPDATE torrents_collected... " />
+            <marker date="1579755638437" expanded="true" signature="7180:7270" ph="UPDATE torrents_collected... " />
+            <marker date="1579755638437" expanded="true" signature="7660:7812" ph="INSERT INTO torrents_collected... " />
+            <marker date="1579755638437" expanded="true" signature="8435:8496" ph="SELECT detai... torrents_collected" />
+            <marker date="1579755638437" expanded="true" signature="8937:9039" ph="UPDATE torrents_collected... " />
+            <marker date="1579755638437" expanded="true" signature="9195:9279" ph="UPDATE torrents_collected... " />
+            <marker date="1579755638437" expanded="true" signature="9691:9843" ph="INSERT INTO torrents_collected... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/boxHelper2/html_parser.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state relative-caret-position="71">
+          <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -628,7 +639,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/boxHelper2/torrent_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
+        <state relative-caret-position="1380">
           <caret line="92" column="28" lean-forward="false" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
@@ -639,8 +650,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/boxHelper2/torrent_controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+        <state relative-caret-position="480">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

@@ -8,7 +8,7 @@ class TorrentController():
     def start(self):
         config = configparser.RawConfigParser()
         config.read("../config.ini", encoding="utf-8")
-        sites_amount = config.get('sites', 'sites_amount')
+        sites_amount = config.getint('sites', 'sites_amount')
         headers = {
             'Connection': 'keep-alive',
             'Upgrade-Insecure-Requests': '1',
@@ -18,18 +18,15 @@ class TorrentController():
         }
         collectors = []
         for i in range(1, sites_amount+1):
-            if config.get('sites', 'strength_'+str(i)) == 10:
-                pass # torren_collector
-            elif config.get('sites', 'strength_'+str(i)) == 20:
-                headers['Cookie'] = config.get('sites', 'cookie_'+str(i))
-                c = AutoTorrentCollector(i, config.get('sites', 'url_'+str(i)), headers, config.get('sites', 'rss_'+str(i)),
-                                         config.get('sites', 'rss_'+str(i)), config.getint('sites', 'strength_'+str(i)), config.getint('sites', 'cycle_'+str(i)))
-                collectors.append(c)
-
+            headers['Cookie'] = config.get('sites', 'cookie_' + str(i))
+            c = AutoTorrentCollector(i, config.get('sites', 'url_' + str(i)), headers,
+                                     config.get('sites', 'rss_' + str(i)), config.getint('sites', 'strength_' + str(i)),
+                                     config.getint('sites', 'cycle_' + str(i)))
+            collectors.append(c)
+        print("01: %d collectors" % len(collectors))
         for collector in collectors:
             collector.run()
 
 if __name__ == '__main__':
-    a = "He\\'s a Woman, She\\'s a Man 1994 NTSC DVD9-ADC"
-    print(str(a))
-    print(repr(a))
+    t = TorrentController()
+    t.start()
