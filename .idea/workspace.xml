@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="afe3114a-27a9-4f52-8666-7311318f00f7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/boxHelper.log" afterPath="$PROJECT_DIR$/boxHelper.log" />
-      <change beforePath="$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py" afterPath="$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py" />
-      <change beforePath="$PROJECT_DIR$/boxHelper2/html_parser.py" afterPath="$PROJECT_DIR$/boxHelper2/html_parser.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/boxHelper.log" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/boxHelper2/torrent_collector.py" afterPath="$PROJECT_DIR$/boxHelper2/torrent_collector.py" />
       <change beforePath="$PROJECT_DIR$/boxHelper2/torrent_controller.py" afterPath="$PROJECT_DIR$/boxHelper2/torrent_controller.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,11 +19,11 @@
     <SUITE FILE_PATH="coverage/boxHelper2$torrent_collector.coverage" NAME="torrent_collector Coverage Results" MODIFIED="1579492278770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/include/boxHelper2" />
     <SUITE FILE_PATH="coverage/boxHelper2$torrentCollector.coverage" NAME="torrentCollector Coverage Results" MODIFIED="1579474393760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/include/tools" />
     <SUITE FILE_PATH="coverage/boxHelper2$test.coverage" NAME="test Coverage Results" MODIFIED="1579665950598" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/boxHelper2" />
-    <SUITE FILE_PATH="coverage/boxHelper2$torrent_collector2.coverage" NAME="torrent_collector2 Coverage Results" MODIFIED="1579754220183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/boxHelper2" />
+    <SUITE FILE_PATH="coverage/boxHelper2$torrent_collector2.coverage" NAME="torrent_collector2 Coverage Results" MODIFIED="1579797885600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/boxHelper2" />
     <SUITE FILE_PATH="coverage/boxHelper2$torrent_collector__1_.coverage" NAME="torrent_collector (1) Coverage Results" MODIFIED="1579548608877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/boxHelper2" />
     <SUITE FILE_PATH="coverage/boxHelper2$urlibTest.coverage" NAME="urlibTest Coverage Results" MODIFIED="1579470681086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/include" />
     <SUITE FILE_PATH="coverage/boxHelper2$html_parser.coverage" NAME="html_parser Coverage Results" MODIFIED="1579481442448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/include/boxHelper2" />
-    <SUITE FILE_PATH="coverage/boxHelper2$torrent_controller__1_.coverage" NAME="torrent_controller (1) Coverage Results" MODIFIED="1579754298035" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/boxHelper2" />
+    <SUITE FILE_PATH="coverage/boxHelper2$torrent_controller__1_.coverage" NAME="torrent_controller (1) Coverage Results" MODIFIED="1579839582074" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/boxHelper2" />
     <SUITE FILE_PATH="coverage/boxHelper2$torrent_controller.coverage" NAME="torrent_controller Coverage Results" MODIFIED="1579488365619" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/include/boxHelper2" />
   </component>
   <component name="FileEditorManager">
@@ -30,43 +31,16 @@
       <file leaf-file-name="torrent_collector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/boxHelper2/torrent_collector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1380">
-              <caret line="92" column="28" lean-forward="false" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
+            <state relative-caret-position="-3236">
+              <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
               <folding>
-                <element signature="e#0#17#0" expanded="true" />
-                <marker date="1579619763601" expanded="true" signature="3731:3797" ph="INSERT INTO torrents_collected... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="torrent_controller.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/boxHelper2/torrent_controller.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="auto_torrent_collector.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="611">
-              <caret line="226" column="0" lean-forward="true" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-                <marker date="1579755638437" expanded="true" signature="6577:6641" ph="SELECT get_t... torrents_collected" />
-                <marker date="1579755638437" expanded="true" signature="6922:7030" ph="UPDATE torrents_collected... " />
-                <marker date="1579755638437" expanded="true" signature="7180:7270" ph="UPDATE torrents_collected... " />
-                <marker date="1579755638437" expanded="true" signature="7660:7812" ph="INSERT INTO torrents_collected... " />
-                <marker date="1579755638437" expanded="true" signature="8435:8496" ph="SELECT detai... torrents_collected" />
-                <marker date="1579755638437" expanded="true" signature="8937:9039" ph="UPDATE torrents_collected... " />
-                <marker date="1579755638437" expanded="true" signature="9195:9279" ph="UPDATE torrents_collected... " />
-                <marker date="1579755638437" expanded="true" signature="9691:9843" ph="INSERT INTO torrents_collected... " />
+                <marker date="1579839800579" expanded="true" signature="7263:7327" ph="SELECT get_t... torrents_collected" />
+                <marker date="1579839800579" expanded="true" signature="7611:7719" ph="UPDATE torrents_collected... " />
+                <marker date="1579839800579" expanded="true" signature="7825:7915" ph="UPDATE torrents_collected... " />
+                <marker date="1579839800579" expanded="true" signature="8215:8273" ph="SELECT get_t... torrents_collected" />
+                <marker date="1579839800579" expanded="true" signature="8523:8675" ph="INSERT INTO torrents_collected... " />
+                <marker date="1579839800579" expanded="true" signature="9172:9274" ph="UPDATE torrents_collected... " />
+                <marker date="1579839800579" expanded="true" signature="9386:9470" ph="UPDATE torrents_collected... " />
               </folding>
             </state>
           </provider>
@@ -85,8 +59,8 @@
       <file leaf-file-name="config.ini" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.ini">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="7" lean-forward="false" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+            <state relative-caret-position="390">
+              <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -95,19 +69,21 @@
       <file leaf-file-name="html_parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/boxHelper2/html_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
+            <state relative-caret-position="-56">
               <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="torrent.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/boxHelper2/torrent.py">
+      <file leaf-file-name="torrent_controller.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/boxHelper2/torrent_controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="79" lean-forward="false" selection-start-line="3" selection-start-column="79" selection-end-line="3" selection-end-column="79" />
-              <folding />
+            <state relative-caret-position="435">
+              <caret line="29" column="13" lean-forward="true" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -133,7 +109,6 @@
       <find>cycle</find>
       <find>html_helper</find>
       <find>promotions:1</find>
-      <find>torrent_list[i]</find>
       <find>ind</find>
       <find>PRINT</find>
       <find>CON</find>
@@ -144,12 +119,17 @@
       <find>04</find>
       <find>free</find>
       <find>source</find>
+      <find>t_str</find>
+      <find>torrent_list[i]</find>
+      <find>results</find>
     </findStrings>
     <replaceStrings>
       <replace>self.config</replace>
       <replace>pre_torrent</replace>
       <replace>1</replace>
       <replace>&quot;1&quot;</replace>
+      <replace>str</replace>
+      <replace>torrent</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -175,14 +155,14 @@
         <option value="$PROJECT_DIR$/include/boxHelper2/torrent_collector.py" />
         <option value="$PROJECT_DIR$/boxHelper2/html_helper.py" />
         <option value="$PROJECT_DIR$/boxHelper2/torrent_collector2.py" />
-        <option value="$PROJECT_DIR$/boxHelper2/torrent_collector.py" />
         <option value="$PROJECT_DIR$/boxHelper2/torrent.py" />
         <option value="$PROJECT_DIR$/boxHelper2/test.py" />
-        <option value="$PROJECT_DIR$/boxHelper.log" />
-        <option value="$PROJECT_DIR$/boxHelper2/torrent_controller.py" />
         <option value="$PROJECT_DIR$/boxHelper2/html_parser.py" />
         <option value="$PROJECT_DIR$/config.ini" />
         <option value="$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py" />
+        <option value="$PROJECT_DIR$/boxHelper2/torrent_controller.py" />
+        <option value="$PROJECT_DIR$/boxHelper2/torrent_collector.py" />
+        <option value="$PROJECT_DIR$/boxHelper.log" />
       </list>
     </option>
   </component>
@@ -352,7 +332,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="boxHelper2" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/boxHelper2/torrent_collector.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -416,7 +396,7 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21244635" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3304721" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -426,7 +406,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32939914" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19420601" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32403433" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -446,9 +426,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py</url>
-          <line>76</line>
-          <option name="timeStamp" value="41" />
+          <url>file://$PROJECT_DIR$/boxHelper2/torrent_collector.py</url>
+          <line>159</line>
+          <option name="timeStamp" value="50" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -458,7 +438,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="42" />
+      <option name="time" value="51" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -467,10 +447,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-            <marker date="1579619763601" expanded="true" signature="3731:3797" ph="INSERT INTO torrents_collected... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -587,44 +564,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boxHelper.log">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="-7">
+          <caret line="1667" column="0" lean-forward="false" selection-start-line="1667" selection-start-column="0" selection-end-line="1667" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.ini">
+    <entry file="file:///usr/local/Cellar/python/3.7.6/Frameworks/Python.framework/Versions/3.7/lib/python3.7/logging/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="7" lean-forward="false" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+        <state relative-caret-position="226">
+          <caret line="1843" column="12" lean-forward="false" selection-start-line="1843" selection-start-column="4" selection-end-line="1843" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boxHelper2/auto_torrent_collector.py">
+    <entry file="file:///usr/local/lib/python3.7/site-packages/werkzeug/contrib/atom.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="226" column="0" lean-forward="true" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-            <marker date="1579755638437" expanded="true" signature="6577:6641" ph="SELECT get_t... torrents_collected" />
-            <marker date="1579755638437" expanded="true" signature="6922:7030" ph="UPDATE torrents_collected... " />
-            <marker date="1579755638437" expanded="true" signature="7180:7270" ph="UPDATE torrents_collected... " />
-            <marker date="1579755638437" expanded="true" signature="7660:7812" ph="INSERT INTO torrents_collected... " />
-            <marker date="1579755638437" expanded="true" signature="8435:8496" ph="SELECT detai... torrents_collected" />
-            <marker date="1579755638437" expanded="true" signature="8937:9039" ph="UPDATE torrents_collected... " />
-            <marker date="1579755638437" expanded="true" signature="9195:9279" ph="UPDATE torrents_collected... " />
-            <marker date="1579755638437" expanded="true" signature="9691:9843" ph="INSERT INTO torrents_collected... " />
-          </folding>
+        <state relative-caret-position="277">
+          <caret line="297" column="13" lean-forward="false" selection-start-line="297" selection-start-column="13" selection-end-line="297" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boxHelper2/html_parser.py">
+    <entry file="file://$PROJECT_DIR$/boxHelper2/torrent_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+        <state relative-caret-position="780">
+          <caret line="61" column="29" lean-forward="true" selection-start-line="61" selection-start-column="29" selection-end-line="61" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -637,21 +604,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/boxHelper2/torrent_collector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1380">
-          <caret line="92" column="28" lean-forward="false" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
+        <state relative-caret-position="-3236">
+          <caret line="0" column="16" lean-forward="false" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
           <folding>
-            <element signature="e#0#17#0" expanded="true" />
-            <marker date="1579619763601" expanded="true" signature="3731:3797" ph="INSERT INTO torrents_collected... " />
+            <marker date="1579839800579" expanded="true" signature="7263:7327" ph="SELECT get_t... torrents_collected" />
+            <marker date="1579839800579" expanded="true" signature="7611:7719" ph="UPDATE torrents_collected... " />
+            <marker date="1579839800579" expanded="true" signature="7825:7915" ph="UPDATE torrents_collected... " />
+            <marker date="1579839800579" expanded="true" signature="8215:8273" ph="SELECT get_t... torrents_collected" />
+            <marker date="1579839800579" expanded="true" signature="8523:8675" ph="INSERT INTO torrents_collected... " />
+            <marker date="1579839800579" expanded="true" signature="9172:9274" ph="UPDATE torrents_collected... " />
+            <marker date="1579839800579" expanded="true" signature="9386:9470" ph="UPDATE torrents_collected... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boxHelper.log">
+      <provider editor-type-id="LargeFileEditor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boxHelper2/html_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-56">
+          <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/boxHelper2/torrent_controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+        <state relative-caret-position="435">
+          <caret line="29" column="13" lean-forward="true" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
