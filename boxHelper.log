@@ -1,0 +1,7 @@
+2020/01/25 17:51:18 - INFO - torrent_collector@48 : Torrent collector number 1 starts the 1th run
+2020/01/25 17:51:20 - INFO - torrent_collector@52 : Torrent collector number 1 end the 1th run and will sleep for 3 seconds
+2020/01/25 17:51:23 - INFO - torrent_collector@48 : Torrent collector number 1 starts the 2th run
+2020/01/25 17:51:24 - INFO - torrent_controller@18 : Collectors will stop after their current run.
+2020/01/25 17:51:25 - INFO - torrent_collector@52 : Torrent collector number 1 end the 2th run and will sleep for 3 seconds
+2020/01/25 17:51:27 - INFO - torrent_controller@18 : Collectors will stop after their current run.
+2020/01/25 17:51:28 - INFO - torrent_collector@55 : Torrent collector stopped

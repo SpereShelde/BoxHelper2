@@ -15,8 +15,6 @@ from torrent import Torrent
 
 class TorrentCollector(threading.Thread):
 
-
-
     def is_alive(self):
         return super().is_alive()
 
@@ -50,7 +48,8 @@ class TorrentCollector(threading.Thread):
             record_time = int(time.time()) - record_time
             self.logger.info("Torrent collector number %d end the %dth run and will sleep for %d seconds" % (
             self.id, count, self.cycle_time - record_time))
-            time.sleep(self.cycle_time - record_time)
+            sleep_time = self.cycle_time - record_time
+            time.sleep(sleep_time if sleep_time > 0 else 5)
             count += 1
         self.logger.info("Torrent collector stopped")
 
@@ -109,7 +108,6 @@ class TorrentCollector(threading.Thread):
                     for i in reversed(range(len(strs))):
                         s = strs[i]
                         while '<' in s:
-                            # pattern = s[s.rindex('<'):] + "[^<]*?" + pattern
                             pattern = "%s[^<]*?%s" % (s[s.rindex('<'):], pattern)
                             s = s[:s.rindex('<')]
                     if pattern not in self.pattern_list:
@@ -175,7 +173,8 @@ class TorrentCollector(threading.Thread):
             try:
                 self.cursor.execute(sql)
                 result = self.cursor.fetchone()
-            except:
+            except Exception as e:
+                self.logger.error(e)
                 self.logger.error("Cannot query torrent %s" % torrent.detail_link)
             if result:
                 if int(time.time()) - result[0] >= 86400 * 2:
@@ -187,7 +186,8 @@ class TorrentCollector(threading.Thread):
                 try:
                     self.cursor.execute(sql)
                     self.db.commit()
-                except:
+                except Exception as e:
+                    self.logger.error(e)
                     self.logger.error("Cannot update torrent %s" % torrent.detail_link)
                     self.db.rollback()
             else:
@@ -197,7 +197,8 @@ class TorrentCollector(threading.Thread):
                 try:
                     self.cursor.execute(sql)
                     self.db.commit()
-                except:
+                except Exception as e:
+                    self.logger.error(e)
                     self.logger.error("Cannot insert torrent %s" % torrent.title)
                     self.db.rollback()
         else:
@@ -206,7 +207,8 @@ class TorrentCollector(threading.Thread):
             try:
                 self.cursor.execute(sql)
                 result = self.cursor.fetchall()
-            except:
+            except Exception as e:
+                self.logger.error(e)
                 self.logger.error("Cannot query torrent %s" % torrent.title)
             if not result:
                 sql = "INSERT INTO torrents_collected (title, size, promotions, detail_link, download_link, upload_time, hits, get_time) VALUES ('%s',%d,%d,'%s','%s',%d,%d,%d)" \
@@ -215,7 +217,8 @@ class TorrentCollector(threading.Thread):
                 try:
                     self.cursor.execute(sql)
                     self.db.commit()
-                except:
+                except Exception as e:
+                    self.logger.error(e)
                     self.logger.error("Cannot insert torrent %s" % torrent.title)
                     self.db.rollback()
             elif len(result) == 1:
@@ -228,7 +231,8 @@ class TorrentCollector(threading.Thread):
                 try:
                     self.cursor.execute(sql)
                     self.db.commit()
-                except:
+                except Exception as e:
+                    self.logger.error(e)
                     self.logger.error("Cannot update torrent %s" % torrent.title)
                     self.db.rollback()
             else:
