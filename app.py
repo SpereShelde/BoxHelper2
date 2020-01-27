@@ -9,6 +9,7 @@ from torrent_controller import tc
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'dev'
+app.debug = True
 
 @app.route('/')
 @app.route('/index')
@@ -68,8 +69,8 @@ def stop():
         flash('Box Helper already stopped.')
     return redirect(url_for('panel'))
 
-@app.route('/clear', methods=['POST'])
-def clear():
+@app.route('/truncate', methods=['POST'])
+def truncate():
     if tc.is_alive():
         flash('Box Helper is running. Please stop it first.')
     else:
@@ -91,3 +92,6 @@ def clear():
         db.close()
         flash('Box Helper cleared data.')
     return redirect(url_for('panel'))
+
+if __name__ == '__main__':
+    app.run(debug=True)

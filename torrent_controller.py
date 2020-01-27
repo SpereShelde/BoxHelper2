@@ -28,6 +28,7 @@ class TorrentController:
         return True
 
     def start(self):
+        self.collectors = []
         open("boxHelper.log", "w").close()
         config = configparser.RawConfigParser()
         config.read("config.ini", encoding="utf-8")

@@ -1,3 +1,4 @@
+import logging
 import threading
 
 import feedparser
@@ -96,6 +97,7 @@ class TorrentCollector(threading.Thread):
             db.close()
             return
         elif self.strength == 30:
+            print(time.time())
             for i in range(len(feed.entries)):
                 if feed.entries[i].title in raw:
                     index = raw.index(feed.entries[i].title) - 1
@@ -112,6 +114,7 @@ class TorrentCollector(threading.Thread):
                             s = s[:s.rindex('<')]
                     if pattern not in self.pattern_list:
                         self.pattern_list.append(pattern)
+            print(time.time())
             if not self.pattern_list:
                 return
             self.strength = 20
@@ -121,6 +124,8 @@ class TorrentCollector(threading.Thread):
                 return
         else:
             return
+
+
         torrent_list = []
         feed_titles = {}
         for i in range(len(feed.entries)):
@@ -135,6 +140,7 @@ class TorrentCollector(threading.Thread):
                 break
             i += 1
         i -= 1
+
         while i < len(text_by_line):
             if text_by_line[i].startswith("TITLE:"):
                 if pre_torrent:
@@ -166,9 +172,9 @@ class TorrentCollector(threading.Thread):
         self.cursor.close()
         self.db.close()
 
-    def insert_torrent(self, torrent,  get_time):
+    def insert_torrent(self, torrent, get_time):
         if torrent.detail_link:
-            sql = "SELECT get_time FROM torrents_collected WHERE detail_link = '%s'" % torrent.detail_link
+            sql = "SELECT get_time FROM torrents_collected WHERE detail_link = '%s'" % pymysql.escape_string(torrent.detail_link)
             result = None
             try:
                 self.cursor.execute(sql)
@@ -179,10 +185,10 @@ class TorrentCollector(threading.Thread):
             if result:
                 if int(time.time()) - result[0] >= 86400 * 2:
                     sql = "UPDATE torrents_collected SET hits = hits + 1 and get_time = %d and promotions = %d WHERE detail_link = '%s'" % (
-                        get_time, torrent.promotions, torrent.detail_link)
+                        get_time, torrent.promotions, pymysql.escape_string(torrent.detail_link))
                 else:
                     sql = "UPDATE torrents_collected SET hits = hits + 1 and promotions = %d WHERE detail_link = '%s'" % (
-                        torrent.promotions, torrent.detail_link)
+                        torrent.promotions, pymysql.escape_string(torrent.detail_link))
                 try:
                     self.cursor.execute(sql)
                     self.db.commit()
@@ -192,8 +198,8 @@ class TorrentCollector(threading.Thread):
                     self.db.rollback()
             else:
                 sql = "INSERT INTO torrents_collected (title, size, promotions, detail_link, download_link, upload_time, hits, get_time) VALUES ('%s',%d,%d,'%s','%s',%d,%d,%d)" \
-                      % (torrent.title, torrent.size, torrent.promotions, torrent.detail_link,
-                         torrent.download_link, torrent.upload_time, 1, get_time)
+                      % (pymysql.escape_string(torrent.title), torrent.size, torrent.promotions, pymysql.escape_string(torrent.detail_link),
+                         pymysql.escape_string(torrent.download_link), torrent.upload_time, 1, get_time)
                 try:
                     self.cursor.execute(sql)
                     self.db.commit()
@@ -202,7 +208,7 @@ class TorrentCollector(threading.Thread):
                     self.logger.error("Cannot insert torrent %s" % torrent.title)
                     self.db.rollback()
         else:
-            sql = "SELECT get_time FROM torrents_collected WHERE title = '%s'" % torrent.title
+            sql = "SELECT get_time, size, detail_link FROM torrents_collected WHERE title = '%s'" % pymysql.escape_string(torrent.title)
             result = None
             try:
                 self.cursor.execute(sql)
@@ -212,8 +218,8 @@ class TorrentCollector(threading.Thread):
                 self.logger.error("Cannot query torrent %s" % torrent.title)
             if not result:
                 sql = "INSERT INTO torrents_collected (title, size, promotions, detail_link, download_link, upload_time, hits, get_time) VALUES ('%s',%d,%d,'%s','%s',%d,%d,%d)" \
-                      % (torrent.title, torrent.size, torrent.promotions, torrent.detail_link,
-                         torrent.download_link, torrent.upload_time, 1, get_time)
+                      % (pymysql.escape_string(torrent.title), torrent.size, torrent.promotions, pymysql.escape_string(torrent.detail_link),
+                         pymysql.escape_string(torrent.download_link), torrent.upload_time, 1, get_time)
                 try:
                     self.cursor.execute(sql)
                     self.db.commit()
@@ -224,10 +230,10 @@ class TorrentCollector(threading.Thread):
             elif len(result) == 1:
                 if int(time.time()) - int(result[0][0]) >= 86400 * 2:
                     sql = "UPDATE torrents_collected SET hits = hits + 1 and get_time = %d and promotions = %d WHERE title = '%s'" % (
-                        get_time, torrent.promotions, torrent.title)
+                        get_time, torrent.promotions, pymysql.escape_string(torrent.title))
                 else:
                     sql = "UPDATE torrents_collected SET hits = hits + 1 and promotions = %d WHERE title = '%s'" % (
-                        torrent.promotions, torrent.title)
+                        torrent.promotions, pymysql.escape_string(torrent.title))
                 try:
                     self.cursor.execute(sql)
                     self.db.commit()
@@ -236,7 +242,7 @@ class TorrentCollector(threading.Thread):
                     self.logger.error("Cannot update torrent %s" % torrent.title)
                     self.db.rollback()
             else:
-                #DO nothing
+
                 self.logger.info("Same-name torrents exist. Cannot update torrent %s" % torrent.title)
 
     def find_size_pro(self, torrent, str):
