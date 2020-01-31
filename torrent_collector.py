@@ -1,13 +1,11 @@
-import logging
 import threading
 
 import feedparser
-import pymysql
 import configparser
 import re
 import time
 import urllib.request
-
+import sqlite3
 import sys
 
 import html_parser
@@ -33,9 +31,9 @@ class TorrentCollector(threading.Thread):
             'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
         }
         self.headers['Cookie'] = self.config.get('sites', 'cookie_' + str(id))
-        self.db = None
-        self.cursor = None
         self.should_running = True
+        self.prefix = ''
+        self.detail_suffix = ''
 
     def stop(self):
         self.should_running = False
@@ -52,7 +50,7 @@ class TorrentCollector(threading.Thread):
             sleep_time = self.cycle_time - record_time
             time.sleep(sleep_time if sleep_time > 0 else 5)
             count += 1
-        self.logger.info("Torrent collector stopped")
+        self.logger.info("Torrent collector number %d stopped" % self.id)
 
     def collect(self):
         request = urllib.request.Request(url=self.url, headers=self.headers)
@@ -63,11 +61,11 @@ class TorrentCollector(threading.Thread):
         if self.strength == 10:
 
             text_by_line = html_parser.filter_tags(raw, []).split("\n")  # 去掉标签然后按行存入list
+
             torrent_list = []
             for i in range(len(feed.entries)):
-                torrent_list.append(Torrent(feed.entries[i].title, detail_link= feed.entries[i].link,
-                                            download_link=feed.entries[i].enclosures[0]["href"],
-                                            upload_time=time.mktime(feed.entries[i].published_parsed)))
+                torrent_list.append(Torrent(detail_link= feed.entries[i].link, title=feed.entries[i].title, download_link=feed.entries[i].enclosures[0]["href"],
+                                            upload_time=time.mktime(feed.entries[i].published_parsed), size=feed.entries[i].enclosures[0]["length"], uploader=feed.entries[i].author))
             indices = []  # 存放匹配的title
             for i in range(len(torrent_list)):
                 for j in range(len(text_by_line)):
@@ -82,194 +80,203 @@ class TorrentCollector(threading.Thread):
                 for j in range(len(indices)):
                     if torrent_list[i].title[:50] in text_by_line[indices[j]]:
                         t_str = "".join(text_by_line[indices[j]:indices[j] + cycle])
-                        self.find_size_pro(torrent_list[i], t_str)
+                        self.find_pro(torrent_list[i], t_str)
 
-            db = pymysql.connect(host=self.config.get('global', 'host'),
-                                 port=self.config.getint('global', 'port'),
-                                 user=self.config.get('global', 'user'),
-                                 passwd=self.config.get('global', 'passwd'),
-                                 db=self.config.get('global', 'db'), charset='utf8')
-            cursor = db.cursor()
+            connection = sqlite3.connect('boxHelper.db')
+            cursor = connection.cursor()
             get_time = int(time.time())
             for torrent in torrent_list:
-                self.insert_torrent(torrent, get_time)
+                self.insert_torrent(torrent, get_time, connection, cursor)
             cursor.close()
-            db.close()
+            connection.close()
             return
-        elif self.strength == 30:
-            print(time.time())
-            for i in range(len(feed.entries)):
-                if feed.entries[i].title in raw:
-                    index = raw.index(feed.entries[i].title) - 1
-                    pattern = "(.*?)"+raw[index]
-                    while index >= 0 and raw[index] != " ":
-                        pattern = raw[index]+pattern
-                        index -= 1
-                    reg = re.compile('\S*')
-                    strs = reg.findall(raw[index-100:index])
-                    for i in reversed(range(len(strs))):
-                        s = strs[i]
-                        while '<' in s:
-                            pattern = "%s[^<]*?%s" % (s[s.rindex('<'):], pattern)
-                            s = s[:s.rindex('<')]
-                    if pattern not in self.pattern_list:
-                        self.pattern_list.append(pattern)
-            print(time.time())
-            if not self.pattern_list:
-                return
-            self.strength = 20
         elif self.strength == 20:
-            if not self.pattern_list:
-                self.logger.info("Cannot find any pattern, return.")
-                return
+            connection = sqlite3.connect('boxHelper.db')
+            cursor = connection.cursor()
+            result = None
+            try:
+                cursor.execute("SELECT detail_pattern, prefix, detail_suffix FROM patterns WHERE site_id = ?", (self.id,))
+                result = cursor.fetchone()
+            except Exception as e:
+                self.logger.error(e)
+                self.logger.error("Cannot query pattern of %d" % self.id)
+            if result:
+                cursor.close()
+                connection.close()
+                self.pattern_list = result[0].split("@Box#Helper@")
+                self.prefix = result[1]
+                self.detail_suffix = result[2]
+            else:
+
+                for i in range(len(feed.entries)):
+                    link = feed.entries[i].link
+                    while link not in raw:
+                        try:
+                            link = link[link.index('/')+1:]
+                        except IndexError as e:
+                            pass
+                    if link in raw:
+                        self.prefix = feed.entries[i].link[:feed.entries[i].link.index(link)]
+                        start = raw.index(link) - 1
+                        end = start+1+len(link)
+                        if raw[start] != '"':
+                            self.logger.info("Please contact author.")
+                        if raw[end] != '"':
+                            # sufix
+                            self.detail_suffix = html_parser.replace_char_entity(raw[end:raw.find('"', end)])
+
+                        pre_index = raw[:start].rindex('<')
+                        pattern = '<[^<>]*?href="(?P<link>%s[^"]*)"[^<>]*?>' % link[:3]
+                        reg = re.compile('\S+')
+                        strs = reg.findall(raw[pre_index - 100:pre_index])
+                        for i in reversed(range(len(strs))):
+                            s = strs[i]
+                            while '<' in s:
+                                pattern = '%s[^<]*?%s' % (s[s.rindex('<'):], pattern)
+                                s = s[:s.rindex('<')]
+                        #
+                        # index = raw.index(link) - 1
+                        # pattern = "(.*?)"+raw[index]
+                        # while index >= 0 and raw[index] != " ":
+                        #     pattern = raw[index]+pattern
+                        #     index -= 1
+                        # reg = re.compile('\S*')
+                        # strs = reg.findall(raw[index-100:index])
+                        # for i in reversed(range(len(strs))):
+                        #     s = strs[i]
+                        #     while '<' in s:
+                        #         pattern = "%s[^<]*?%s" % (s[s.rindex('<'):], pattern)
+                        #         s = s[:s.rindex('<')]
+                        if pattern not in self.pattern_list:
+                            self.pattern_list.append(pattern)
+                if not self.pattern_list:
+                    return
+                print('@Box#Helper@'.join(self.pattern_list))
+                cursor.execute("INSERT INTO patterns (detail_pattern, prefix, site_id, detail_suffix) VALUES (?, ?, ?, ?)", ('@Box#Helper@'.join(self.pattern_list), self.prefix, self.id, self.detail_suffix))
+                connection.commit()
+                cursor.close()
+                connection.close()
         else:
             return
 
-
-        torrent_list = []
-        feed_titles = {}
+        #feed_links is a dic restores link:index
+        feed_links = {}
         for i in range(len(feed.entries)):
-            feed_titles[feed.entries[i].title] = i
-        other_str = ""
-        pre_torrent = None
-        i = 0
+            feed_links[feed.entries[i].link.replace(self.prefix, '').replace(self.detail_suffix, '')] = i
+        #text_by_line is a list restores texts from html
+        text_by_line = html_parser.filter_tags(raw, self.pattern_list).split("\n")
 
-        text_by_line = html_parser.filter_tags(raw, self.pattern_list).split("\n")  # 去掉标签然后按行存入list
+        for t in text_by_line:
+            print(t)
+
+        #Locate the first torrent item
+        i = 0
         while i < len(text_by_line):
-            if text_by_line[i].startswith("TITLE:"):
+            if text_by_line[i].strip().startswith("BLINKHSTART:"):
                 break
             i += 1
-        i -= 1
-
+        torrent_list = []
+        pre_torrent = None
+        other_str = ""
         while i < len(text_by_line):
-            if text_by_line[i].startswith("TITLE:"):
-                if pre_torrent:
-                    self.find_size_pro(pre_torrent, other_str)
+            # b =text_by_line[i].strip()
+            if text_by_line[i].strip().startswith("BLINKHSTART:"):
+                ind = text_by_line[i].index(":ENDBLINKH")
+                if other_str == "":
+                    other_str = text_by_line[i][ind:]
+                detail = text_by_line[i][13:ind].strip()
+                real_detail = detail.replace(self.detail_suffix, '')
+                # a =self.prefix+real_detail
+                if pre_torrent and pre_torrent.detail_link != self.prefix+real_detail:
+                    self.find_pro(pre_torrent, other_str)
                     torrent_list.append(pre_torrent)
-                other_str = text_by_line[i][text_by_line[i].index(":END"):]
-                title = text_by_line[i][7:text_by_line[i].index(" :END")].strip()
-                title = re.compile("\s{2,}").sub(" ", title)
-                if title in feed_titles:
-                    ind = feed_titles[title]
-                    pre_torrent = Torrent(feed.entries[ind].title, detail_link=feed.entries[ind].link,
+                    other_str = text_by_line[i][ind:]
+                # detail = re.compile("\s{2,}").sub(" ", detail)
+                if real_detail in feed_links:
+                    ind = feed_links[real_detail]
+                    pre_torrent = Torrent(detail_link=feed.entries[ind].link, title=feed.entries[ind].title,
                                           download_link=feed.entries[ind].enclosures[0]["href"],
-                                          upload_time=int(time.mktime(feed.entries[ind].published_parsed)))
+                                          upload_time=int(time.mktime(feed.entries[ind].published_parsed)), size=feed.entries[ind].enclosures[0]["length"], uploader=feed.entries[ind].author)
+                    # other_str = text_by_line[i][ind:]
                 else:
-                    pre_torrent = Torrent(title)
+                    pre_torrent = Torrent(self.prefix+real_detail)
             else:
                 other_str += text_by_line[i]
             i += 1
 
-        self.db = pymysql.connect(host=self.config.get('global', 'host'),
-                             port=self.config.getint('global', 'port'),
-                             user=self.config.get('global', 'user'),
-                             passwd=self.config.get('global', 'passwd'),
-                             db=self.config.get('global', 'db'), charset='utf8')
-        self.cursor = self.db.cursor()
+        connection = sqlite3.connect('boxHelper.db')
+        cursor = connection.cursor()
         get_time = int(time.time())
         for torrent in torrent_list:
-            self.insert_torrent(torrent, get_time)
-        self.cursor.close()
-        self.db.close()
+            self.insert_torrent(torrent, get_time, connection, cursor)
+        cursor.close()
+        connection.close()
 
-    def insert_torrent(self, torrent, get_time):
+    def insert_torrent(self, torrent, get_time, connection, cursor):
         if torrent.detail_link:
-            sql = "SELECT get_time FROM torrents_collected WHERE detail_link = '%s'" % pymysql.escape_string(torrent.detail_link)
             result = None
             try:
-                self.cursor.execute(sql)
-                result = self.cursor.fetchone()
+                cursor.execute("SELECT get_time FROM torrents_collected WHERE detail_link = ?", (torrent.detail_link,))
+                result = cursor.fetchone()
             except Exception as e:
                 self.logger.error(e)
                 self.logger.error("Cannot query torrent %s" % torrent.detail_link)
             if result:
                 if int(time.time()) - result[0] >= 86400 * 2:
-                    sql = "UPDATE torrents_collected SET hits = hits + 1 and get_time = %d and promotions = %d WHERE detail_link = '%s'" % (
-                        get_time, torrent.promotions, pymysql.escape_string(torrent.detail_link))
+                    try:
+                        cursor.execute("UPDATE torrents_collected SET get_time = ? and promotions = ? WHERE detail_link = ?", (get_time, torrent.promotions, torrent.detail_link))
+                        connection.commit()
+                    except Exception as e:
+                        self.logger.error(e)
+                        self.logger.error("Cannot update torrent %s" % torrent.detail_link)
+                        connection.rollback()
                 else:
-                    sql = "UPDATE torrents_collected SET hits = hits + 1 and promotions = %d WHERE detail_link = '%s'" % (
-                        torrent.promotions, pymysql.escape_string(torrent.detail_link))
-                try:
-                    self.cursor.execute(sql)
-                    self.db.commit()
-                except Exception as e:
-                    self.logger.error(e)
-                    self.logger.error("Cannot update torrent %s" % torrent.detail_link)
-                    self.db.rollback()
+                    try:
+                        cursor.execute("UPDATE torrents_collected SET promotions = ? WHERE detail_link = ?", (torrent.promotions, torrent.detail_link))
+                        connection.commit()
+                    except Exception as e:
+                        self.logger.error(e)
+                        self.logger.error("Cannot update torrent %s" % torrent.detail_link)
+                        connection.rollback()
+
             else:
-                sql = "INSERT INTO torrents_collected (title, size, promotions, detail_link, download_link, upload_time, hits, get_time) VALUES ('%s',%d,%d,'%s','%s',%d,%d,%d)" \
-                      % (pymysql.escape_string(torrent.title), torrent.size, torrent.promotions, pymysql.escape_string(torrent.detail_link),
-                         pymysql.escape_string(torrent.download_link), torrent.upload_time, 1, get_time)
                 try:
-                    self.cursor.execute(sql)
-                    self.db.commit()
+                    cursor.execute("INSERT INTO torrents_collected (title, size, promotions, detail_link, download_link, upload_time, get_time, uploader) VALUES (?,?,?,?,?,?,?,?)",
+                                   (torrent.title, torrent.size, torrent.promotions, torrent.detail_link, torrent.download_link, torrent.upload_time, get_time, torrent.uploader))
+                    connection.commit()
                 except Exception as e:
                     self.logger.error(e)
                     self.logger.error("Cannot insert torrent %s" % torrent.title)
-                    self.db.rollback()
+                    connection.rollback()
         else:
-            sql = "SELECT get_time, size, detail_link FROM torrents_collected WHERE title = '%s'" % pymysql.escape_string(torrent.title)
-            result = None
-            try:
-                self.cursor.execute(sql)
-                result = self.cursor.fetchall()
-            except Exception as e:
-                self.logger.error(e)
-                self.logger.error("Cannot query torrent %s" % torrent.title)
-            if not result:
-                sql = "INSERT INTO torrents_collected (title, size, promotions, detail_link, download_link, upload_time, hits, get_time) VALUES ('%s',%d,%d,'%s','%s',%d,%d,%d)" \
-                      % (pymysql.escape_string(torrent.title), torrent.size, torrent.promotions, pymysql.escape_string(torrent.detail_link),
-                         pymysql.escape_string(torrent.download_link), torrent.upload_time, 1, get_time)
-                try:
-                    self.cursor.execute(sql)
-                    self.db.commit()
-                except Exception as e:
-                    self.logger.error(e)
-                    self.logger.error("Cannot insert torrent %s" % torrent.title)
-                    self.db.rollback()
-            elif len(result) == 1:
-                if int(time.time()) - int(result[0][0]) >= 86400 * 2:
-                    sql = "UPDATE torrents_collected SET hits = hits + 1 and get_time = %d and promotions = %d WHERE title = '%s'" % (
-                        get_time, torrent.promotions, pymysql.escape_string(torrent.title))
-                else:
-                    sql = "UPDATE torrents_collected SET hits = hits + 1 and promotions = %d WHERE title = '%s'" % (
-                        torrent.promotions, pymysql.escape_string(torrent.title))
-                try:
-                    self.cursor.execute(sql)
-                    self.db.commit()
-                except Exception as e:
-                    self.logger.error(e)
-                    self.logger.error("Cannot update torrent %s" % torrent.title)
-                    self.db.rollback()
-            else:
+            self.logger.info("Torrent doesn't have detail_link")
 
-                self.logger.info("Same-name torrents exist. Cannot update torrent %s" % torrent.title)
-
-    def find_size_pro(self, torrent, str):
+    def find_pro(self, torrent, str):
         if "BFREEH" in str:
             torrent.set_promotions(1)
         # 在title后cycle行内正则获取种子大小
-        if "KB" in str:
-            matcher = re.search(r'\d+\.?\d*KB', str)
-            if matcher:
-                torrent.set_size(float(matcher.group()[:-2]) / 1024)
-            else:
-                torrent.set_size(-1)
-        elif "MB" in str:
-            matcher = re.search(r'\d+\.?\d*MB', str)
-            if matcher:
-                torrent.set_size(float(matcher.group()[:-2]))
-            else:
-                torrent.set_size(-1)
-        elif "GB" in str:
-            matcher = re.search(r'\d+\.?\d*GB', str)
-            if matcher:
-                torrent.set_size(float(matcher.group()[:-2]) * 1024)
-            else:
-                torrent.set_size(-1)
-        elif "TB" in str:
-            matcher = re.search(r'\d+\.?\d*TB', str)
-            if matcher:
-                torrent.set_size(float(matcher.group()[:-2]) * 1024 * 1024)
-            else:
-                torrent.set_size(-1)
+        # if "GB" in str:
+        #     matcher = re.search(r'\d+\.?\d*GB', str)
+        #     if matcher:
+        #         torrent.set_size(float(matcher.group()[:-2]) * 1024)
+        #     else:
+        #         torrent.set_size(-1)
+        # elif "MB" in str:
+        #     matcher = re.search(r'\d+\.?\d*MB', str)
+        #     if matcher:
+        #         torrent.set_size(float(matcher.group()[:-2]))
+        #     else:
+        #         torrent.set_size(-1)
+        # elif "KB" in str:
+        #     matcher = re.search(r'\d+\.?\d*KB', str)
+        #     if matcher:
+        #         torrent.set_size(float(matcher.group()[:-2]) / 1024)
+        #     else:
+        #         torrent.set_size(-1)
+        #
+        # elif "TB" in str:
+        #     matcher = re.search(r'\d+\.?\d*TB', str)
+        #     if matcher:
+        #         torrent.set_size(float(matcher.group()[:-2]) * 1024 * 1024)
+        #     else:
+        #         torrent.set_size(-1)

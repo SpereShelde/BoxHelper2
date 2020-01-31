@@ -5,7 +5,7 @@ import re
 ##过滤HTML中的标签
 # 将HTML中标签等信息去掉
 # @param htmlstr HTML字符串.
-def filter_tags(htmlstr, title_reg_list):
+def filter_tags(htmlstr, detail_reg_list):
     # 先过滤CDATA
     re_cdata = re.compile('//<!\[CDATA\[[^>]*//\]\]>', re.I)  # 匹配CDATA
     re_script = re.compile('<\s*script[^>]*>[^<]*<\s*/\s*script\s*>', re.I)  # Script
@@ -17,8 +17,8 @@ def filter_tags(htmlstr, title_reg_list):
     s = re_cdata.sub('', htmlstr)  # 去掉CDATA
     s = re_script.sub('', s)  # 去掉SCRIPT
     s = re_style.sub('', s)  # 去掉style
-    for pattern in title_reg_list:
-        s = replace_title(s, pattern)  # Replace labeled title with pure title
+    for pattern in detail_reg_list:
+        s = replace_detail(s, pattern)  # Replace labeled title with pure title
     s = re_free.sub('<span>BFREEH</span><k', s)  # 将free img转换为free
     s = re_br.sub('\n', s)  # 将br转换为换行
     s = re_h.sub('', s)  # 去掉HTML 标签
@@ -30,13 +30,13 @@ def filter_tags(htmlstr, title_reg_list):
     # print(s)
     return s
 
-def replace_title(htmlstr, title_reg):
-    regex = re.compile(title_reg)
+def replace_detail(htmlstr, detail_reg):
+    regex = re.compile(detail_reg)
     res = regex.search(htmlstr)
     while res is not None:
-        whole_title = res.group(0)
-        title = res.group(1)
-        htmlstr = htmlstr.replace(whole_title, '<span>TITLE: '+title+' :END</span><k')
+        # whole_detail = res.group(0)
+        detail = res.group("link")
+        htmlstr = htmlstr.replace(detail, 'k>BLINKHSTART: '+detail+' :ENDBLINKH<k')
         res = regex.search(htmlstr)
     return htmlstr
 
