@@ -30,7 +30,7 @@ def users():
     feed = Feed('Box Helper', 'http://127.0.0.1:12020')
 
     for result in results:
-        feed.append_item("%s [%s%s]" % (result[0], result[1], 'BFreeH' if result[2]==1 else ''), result[3], result[4])
+        feed.append_item("%s [%s%s]" % (result[0], result[1], 'BFreeH' if result[2]==1 else ''), result[3], result[4], result[1])
     return Response(feed.get_xml(), mimetype='application/xml')
 
 @app.route('/panel')

@@ -147,11 +147,11 @@ class TorrentCollector(threading.Thread):
                         #     while '<' in s:
                         #         pattern = "%s[^<]*?%s" % (s[s.rindex('<'):], pattern)
                         #         s = s[:s.rindex('<')]
-                        if pattern not in self.pattern_list:
+                        if paattern not in self.pattern_list:
                             self.pattern_list.append(pattern)
                 if not self.pattern_list:
                     return
-                print('@Box#Helper@'.join(self.pattern_list))
+                # print('@Box#Helper@'.join(self.pattern_list))
                 cursor.execute("INSERT INTO patterns (detail_pattern, prefix, site_id, detail_suffix) VALUES (?, ?, ?, ?)", ('@Box#Helper@'.join(self.pattern_list), self.prefix, self.id, self.detail_suffix))
                 connection.commit()
                 cursor.close()
@@ -166,8 +166,8 @@ class TorrentCollector(threading.Thread):
         #text_by_line is a list restores texts from html
         text_by_line = html_parser.filter_tags(raw, self.pattern_list).split("\n")
 
-        for t in text_by_line:
-            print(t)
+        # for t in text_by_line:
+        #     print(t)
 
         #Locate the first torrent item
         i = 0

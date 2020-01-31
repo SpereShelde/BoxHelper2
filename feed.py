@@ -21,15 +21,16 @@ class Feed(object):
         element.appendChild(self._document.createTextNode(text))
         return element
 
-    def append_item(self, title, link=None, enclosure=None):
+    def append_item(self, title, link=None, url=None, lenth=0):
         """Append an item to the feed."""
         item = self._document.createElement('item')
         item.appendChild(self._create_text_element('title', title))
         if link:
             item.appendChild(self._create_text_element('link', link))
-        if enclosure:
+        if url:
             en = self._document.createElement('enclosure')
-            en.setAttribute('url', enclosure)
+            en.setAttribute('url', url)
+            en.setAttribute('lenth', lenth)
             en.setAttribute('type', 'application/x-bittorrent')
             item.appendChild(en)
         self._channel.appendChild(item)
