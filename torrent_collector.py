@@ -113,7 +113,7 @@ class TorrentCollector(threading.Thread):
                     while link not in raw:
                         try:
                             link = link[link.index('/')+1:]
-                        except IndexError as e:
+                        except ValueError as e:
                             pass
                     if link in raw:
                         self.prefix = feed.entries[i].link[:feed.entries[i].link.index(link)]
@@ -147,7 +147,7 @@ class TorrentCollector(threading.Thread):
                         #     while '<' in s:
                         #         pattern = "%s[^<]*?%s" % (s[s.rindex('<'):], pattern)
                         #         s = s[:s.rindex('<')]
-                        if paattern not in self.pattern_list:
+                        if pattern not in self.pattern_list:
                             self.pattern_list.append(pattern)
                 if not self.pattern_list:
                     return

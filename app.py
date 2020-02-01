@@ -76,9 +76,10 @@ def truncate():
         config.read("config.ini", encoding="utf-8")
         connection = sqlite3.connect('boxHelper.db')
         cursor = connection.cursor()
-        sql = "DELETE FROM torrents_collected"
         try:
-            cursor.execute(sql)
+            cursor.execute("DELETE FROM torrents_collected")
+            cursor.execute("DELETE FROM patterns")
+            cursor.execute("UPDATE sqlite_sequence SET seq = 0")
             connection.commit()
         except:
             flash('Box Helper CANNOT clear data.')

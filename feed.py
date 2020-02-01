@@ -30,7 +30,7 @@ class Feed(object):
         if url:
             en = self._document.createElement('enclosure')
             en.setAttribute('url', url)
-            en.setAttribute('lenth', lenth)
+            en.setAttribute('lenth', str(lenth))
             en.setAttribute('type', 'application/x-bittorrent')
             item.appendChild(en)
         self._channel.appendChild(item)
