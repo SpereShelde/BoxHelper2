@@ -7,7 +7,8 @@ class Torrent:
         self.upload_time = upload_time
         self.uploader = uploader
         self.size = size
-        self.promotions = -1
+        self.promotions = 0
+        # 10 is free
 
     def __str__(self) -> str:
         return "Title:%s - size:%d - detail_link:%s - download_link:%s - upload_time:%s - promotions:%d"%(self.title, self.size, self.detail_link, self.download_link, self.upload_time, self.promotions)

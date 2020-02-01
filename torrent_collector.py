@@ -55,27 +55,27 @@ class TorrentCollector(threading.Thread):
     def collect(self):
         request = urllib.request.Request(url=self.url, headers=self.headers)
         response = urllib.request.urlopen(request)
-        raw = response.read().decode('utf-8')  # 获取网站源码
-        feed = feedparser.parse(self.rss)  # 从rss读取items
+        raw = response.read().decode('utf-8')
+        feed = feedparser.parse(self.rss)
 
         if self.strength == 10:
 
-            text_by_line = html_parser.filter_tags(raw, []).split("\n")  # 去掉标签然后按行存入list
+            text_by_line = html_parser.filter_tags(raw, []).split("\n")
 
             torrent_list = []
             for i in range(len(feed.entries)):
                 torrent_list.append(Torrent(detail_link= feed.entries[i].link, title=feed.entries[i].title, download_link=feed.entries[i].enclosures[0]["href"],
                                             upload_time=time.mktime(feed.entries[i].published_parsed), size=feed.entries[i].enclosures[0]["length"], uploader=feed.entries[i].author))
-            indices = []  # 存放匹配的title
+            indices = []  #For titles
             for i in range(len(torrent_list)):
                 for j in range(len(text_by_line)):
                     if torrent_list[i].title[:50] in text_by_line[j]:
                         indices.append(j)
-            indices.sort()  # 排序
+            indices.sort()
             cycle = sys.maxsize
             for i in range(1, len(indices)):
                 cycle = min(cycle,indices[i] - indices[i - 1])
-                # 最小的差值是最小循环行数
+                #Cycle is the min of cycles
             for i in range(len(torrent_list)):
                 for j in range(len(indices)):
                     if torrent_list[i].title[:50] in text_by_line[indices[j]]:
@@ -253,7 +253,7 @@ class TorrentCollector(threading.Thread):
 
     def find_pro(self, torrent, str):
         if "BFREEH" in str:
-            torrent.set_promotions(1)
+            torrent.set_promotions(10)
         # 在title后cycle行内正则获取种子大小
         # if "GB" in str:
         #     matcher = re.search(r'\d+\.?\d*GB', str)
