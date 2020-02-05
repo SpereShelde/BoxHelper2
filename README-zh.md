@@ -9,11 +9,11 @@ boxHelper2分为两个主要模块，分别是抓取模块和控制模块，并�
 ## 用法
 
 ### 环境
-apt install python3
+`apt install python3`
 
-apt install python3-pip
+`apt install python3-pip`
 
-pip3 install virtualenv
+`pip3 install virtualenv`
 
 ### 安装
 
@@ -67,3 +67,8 @@ cycle 即循环抓取时间
 
 - RSS交互控制面板
 - 控制模块
+
+## 外站探索
+
+ipt 完全不适用，不过好在rss可以筛选free，控制模块删种需要注意
+hdt 稍作修改可以适用

@@ -1,0 +1,380 @@
+0 登陆
+{"method": "auth.login", "params": ["wzf123wzf"], "id": 1}
+返回 result为true即登陆成功
+{
+"id": 1,
+"result": true,
+"error": null
+}
+
+判断session是否过期 {"method": "auth.check_session", "params": [], "id": 1}
+
+返回true为没过期 {
+    "id": 1,
+    "result": true,
+    "error": null
+}
+
+0.5 查看host {"method": "web.get_hosts", "params": [], "id": 1}
+返回 host id
+{
+    "id": 1,
+    "result": [
+        [
+            "9e1300ffeec14396d5324614023f05e923675ee2",
+            "127.0.0.1",
+            58846,
+            "Offline"
+        ]
+    ],
+    "error": null
+}
+
+查看host 版本 {"method": "web.get_host_status", "params": ["9e1300ffeec14396d5324614023f05e923675ee2"], "id": 1}
+返回版本，2.0.0以上api有些变化
+{
+    "id": 1,
+    "result": [
+        "9e1300ffeec14396d5324614023f05e923675ee2",
+        "127.0.0.1",
+        58846,
+        "Connected",
+        "1.3.15"
+    ],
+    "error": null
+}
+
+1 暂时添加种子，临时下载torrent {"method": "web.download_torrent_from_url", "params": ["https://pt.m-team.cc/download.php?id=384760&passkey=4876fea3b1a22a02b2aca3974e450057"], "id": 1}
+返回临时下载的torrent文件位置 {
+    "id": 1,
+    "result": "/tmp/delugeweb-gzz1KR/%5BM-TEAM%5D.A.Shaun.the.Sheep.Movie.Farmageddon.2019.BluRay.1080p.TrueHD.7.1.x265.10bit-CHD.torrent",
+    "error": null
+}
+
+2 提供torrent文件位置，获取种子信息 {"method":"web.get_torrent_info","params":["/tmp/delugeweb-9QWChP/%5BM-TEAM%5D.A.Shaun.the.Sheep.Movie.Farmageddon.2019.BluRay.1080p.TrueHD.7.1.x265.10bit-CHD.torrent"],"id":2}
+
+返回值：type是文件类型。contents是{}包裹的多个键值对，名字：{}值，{}内的download可能是是否下载， path是下载路径，length是长度，type是类型，index是序号。如果contents内容很多下载会卡。此后info_hash成为deluge内种子的id，可以通过hash获取种子状态
+ {
+    "id": 2,
+    "result": {
+        "files_tree": {
+            "type": "dir",
+            "contents": {
+                "A.Shaun.the.Sheep.Movie.Farmageddon.2019.BluRay.1080p.TrueHD.7.1.x265.10bit-CHD": {
+                    "download": true,
+                    "length": 5405292681,
+                    "type": "dir",
+                    "contents": {
+                        "A.Shaun.the.Sheep.Movie.Farmageddon.2019.BluRay.1080p.TrueHD.7.1.x265.10bit-CHD.mkv": {
+                            "download": true,
+                            "path": "A.Shaun.the.Sheep.Movie.Farmageddon.2019.BluRay.1080p.TrueHD.7.1.x265.10bit-CHD/A.Shaun.the.Sheep.Movie.Farmageddon.2019.BluRay.1080p.TrueHD.7.1.x265.10bit-CHD.mkv",
+                            "length": 5405286712,
+                            "type": "file",
+                            "index": 0
+                        },
+                        "A.Shaun.the.Sheep.Movie.Farmageddon.2019.BluRay.1080p.TrueHD.7.1.x265.10bit-CHD.nfo": {
+                            "download": true,
+                            "path": "A.Shaun.the.Sheep.Movie.Farmageddon.2019.BluRay.1080p.TrueHD.7.1.x265.10bit-CHD/A.Shaun.the.Sheep.Movie.Farmageddon.2019.BluRay.1080p.TrueHD.7.1.x265.10bit-CHD.nfo",
+                            "length": 5969,
+                            "type": "file",
+                            "index": 1
+                        }
+                    }
+                }
+            }
+        },
+        "name": "A.Shaun.the.Sheep.Movie.Farmageddon.2019.BluRay.1080p.TrueHD.7.1.x265.10bit-CHD",
+        "info_hash": "47ded60d1967297416121b9dcc5b51ce72ac83e8"
+    },
+    "error": null
+}
+
+
+
+3 加载已有的torrent文件，path是位置；options是配置参数，add_paused是加载后暂停。max_upload_speed单种上传速度，对于限速站有用，max_upload_slots和max_connections，不确定用途，可能影响速度
+{
+    "method": "web.add_torrents", 
+    "params": [
+        [
+            {
+                "path": "/tmp/delugeweb-tZhdlj/%5BM-TEAM%5D.A.Shaun.the.Sheep.Movie.Farmageddon.2019.BluRay.1080p.TrueHD.7.1.x265.10bit-CHD.torrent", 
+                "options": {
+                    "file_priorities": [
+                        0, 
+                        1
+                    ], 
+                    "add_paused": false, 
+                    "compact_allocation": false, 
+                    "download_location": "/home/wzf/deluge/download", 
+                    "move_completed": false, 
+                    "move_completed_path": "/root/Downloads", 
+                    "max_connections": -1, 
+                    "max_download_speed": -1, 
+                    "max_upload_slots": -1, 
+                    "max_upload_speed": -1, 
+                    "prioritize_first_last_pieces": false
+                }
+            }
+        ]
+    ], 
+    "id": 475
+}
+
+返回 {
+    "id": 3,
+    "result": true,
+    "error": null
+}
+
+4 获取种子信息 省略所有参数即获取全部
+{"method":"web.get_torrent_status","params":["a0784e59ec696b67df8cb24f370f21a7eef6e906",["total_done","total_payload_download","total_uploaded","total_payload_upload","next_announce","tracker_status","num_pieces","piece_length","is_auto_managed","active_time","seeding_time","seed_rank","queue","name","total_wanted","state","progress","num_seeds","total_seeds","num_peers","total_peers","download_payload_rate","upload_payload_rate","eta","ratio","distributed_copies","is_auto_managed","time_added","tracker_host","save_path","total_done","total_uploaded","max_download_speed","max_upload_speed","seeds_peers_ratio"]],"id":1699}
+
+{
+    "id": 1699,
+    "result": {
+        "active_time": 0,
+        "max_download_speed": -1,
+        "upload_payload_rate": 0,
+        "total_payload_upload": 0,
+        "seed_rank": 0,
+        "seeding_time": 0,
+        "download_payload_rate": 0,
+        "num_pieces": 5843,
+        "num_peers": 0,
+        "ratio": -1.0,
+        "total_peers": -1,
+        "max_upload_speed": -1,
+        "state": "Paused",
+        "distributed_copies": 0.0,
+        "save_path": "/home/wzf/deluge/download",
+        "progress": 0.0,
+        "time_added": 1580777216.0,
+        "tracker_host": "m-team.cc",
+        "total_uploaded": 0,
+        "total_done": 0,
+        "total_wanted": 24506335232,
+        "total_seeds": -1,
+        "next_announce": 0,
+        "seeds_peers_ratio": 1.0,
+        "piece_length": 4194304,
+        "num_seeds": 0,
+        "name": "Hell.on.the.Border.2019.BluRay.1080p.AVC.DTS-HD.MA5.1-MTeam",
+        "is_auto_managed": true,
+        "tracker_status": "",
+        "queue": 1,
+        "eta": 0,
+        "total_payload_download": 0
+    },
+    "error": null
+}
+
+{"method":"web.get_torrent_status","params":["996742707808c73d7dd521002c2c7ad883042e06",["peers"]],"id":5529} peers参数是获取peer列表
+
+{
+    "id": 5529,
+    "result": {
+        "peers": [
+            {
+                "down_speed": 0,
+                "ip": "42.236.160.92:16881",
+                "up_speed": 0,
+                "client": "Transmission 2.93",
+                "country": "CN",
+                "progress": 0.0268697589635849,
+                "seed": 0
+            },
+            {
+                "down_speed": 3,
+                "ip": "118.119.15.145:16881",
+                "up_speed": 0,
+                "client": "Transmission 2.93",
+                "country": "CN",
+                "progress": 0.027212047949433327,
+                "seed": 0
+            },
+            {
+                "down_speed": 0,
+                "ip": "175.171.148.167:51416",
+                "up_speed": 0,
+                "client": "Transmission 2.94",
+                "country": "CN",
+                "progress": 0.027040904387831688,
+                "seed": 0
+            },
+            {
+                "down_speed": 14,
+                "ip": "195.154.191.180:9002",
+                "up_speed": 0,
+                "client": "qBittorrent/4.2.1",
+                "country": "FR",
+                "progress": 0.027212047949433327,
+                "seed": 0
+            },
+            {
+                "down_speed": 13,
+                "ip": "37.187.111.167:9002",
+                "up_speed": 0,
+                "client": "qBittorrent/4.2.1",
+                "country": "FR",
+                "progress": 0.027212047949433327,
+                "seed": 0
+            }
+        ]
+    },
+    "error": null
+}
+
+5 获取总体信息，省略所有参数即获取全部。 download_payload_rate 即下载速度， queue是队列优先级，-1不再队列，0为最高级. {}内为筛选条件例如 "state":"Paused"
+{"method":"web.update_ui","params":[[],{}],"id":17} protocol_rate 指的tcp协议的开销
+返回
+{
+    "id": 17,
+    "result": {
+        "stats": {
+            "upload_protocol_rate": 131698,
+            "max_upload": -1.0,
+            "download_protocol_rate": 121645,
+            "download_rate": 3062482,
+            "has_incoming_connections": true,
+            "num_connections": 184,
+            "max_download": -1.0,
+            "upload_rate": 0,
+            "dht_nodes": 0,
+            "free_space": 21655760896,
+            "max_num_connections": -1
+        },
+        "connected": true,
+        "torrents": {
+            "996742707808c73d7dd521002c2c7ad883042e06": {
+                "max_download_speed": -1,
+                "upload_payload_rate": 0,
+                "download_payload_rate": 3062482,
+                "num_peers": 119,
+                "ratio": 0.025816602632403374,
+                "total_peers": 260,
+                "state": "Downloading",
+                "max_upload_speed": -1,
+                "eta": 7765,
+                "save_path": "/home/wzf/deluge/download",
+                "progress": 2.9614999294281006,
+                "time_added": 1580777216.0,
+                "tracker_host": "m-team.cc",
+                "total_uploaded": 18736660,
+                "total_done": 725760098,
+                "total_wanted": 24506335232,
+                "total_seeds": 1,
+                "seeds_peers_ratio": 0.003846153849735856,
+                "num_seeds": 0,
+                "name": "Hell.on.the.Border.2019.BluRay.1080p.AVC.DTS-HD.MA5.1-MTeam",
+                "is_auto_managed": true,
+                "queue": 1,
+                "distributed_copies": 0.06400000303983688
+            },
+            "a0784e59ec696b67df8cb24f370f21a7eef6e906": {
+                "max_download_speed": -1,
+                "upload_payload_rate": 0,
+                "download_payload_rate": 0,
+                "num_peers": 0,
+                "ratio": -1.0,
+                "total_peers": -1,
+                "state": "Paused",
+                "max_upload_speed": -1,
+                "eta": 0,
+                "save_path": "/home/wzf/deluge/download",
+                "progress": 0.0,
+                "time_added": 1580743040.0,
+                "tracker_host": "m-team.cc",
+                "total_uploaded": 0,
+                "total_done": 0,
+                "total_wanted": 35327377408,
+                "total_seeds": -1,
+                "seeds_peers_ratio": 1.0,
+                "num_seeds": 0,
+                "name": "The.Great.War.2019.BluRay.1080p.AVC.DTS-HD.MA5.1-MTeam",
+                "is_auto_managed": true,
+                "queue": 0,
+                "distributed_copies": 0.0
+            },
+            "0b019fe78fed77b45cf51ecb543b83f251a774ba": {
+                "max_download_speed": -1,
+                "upload_payload_rate": 0,
+                "download_payload_rate": 0,
+                "num_peers": 0,
+                "ratio": -1.0,
+                "total_peers": 1,
+                "state": "Seeding",
+                "max_upload_speed": -1,
+                "eta": 0,
+                "save_path": "/home/wzf/deluge/download",
+                "progress": 100.0,
+                "time_added": 1580702720.0,
+                "tracker_host": "m-team.cc",
+                "total_uploaded": 0,
+                "total_done": 0,
+                "total_wanted": 0,
+                "total_seeds": 137,
+                "seeds_peers_ratio": 137.0,
+                "num_seeds": 0,
+                "name": "Paul Graham：黑客与画家.epub",
+                "is_auto_managed": true,
+                "queue": -1,
+                "distributed_copies": 0.0
+            }
+        },
+        "filters": {
+            "state": [
+                [
+                    "All",
+                    3
+                ],
+                [
+                    "Downloading",
+                    1
+                ],
+                [
+                    "Seeding",
+                    1
+                ],
+                [
+                    "Active",
+                    1
+                ],
+                [
+                    "Paused",
+                    1
+                ],
+                [
+                    "Queued",
+                    0
+                ],
+                [
+                    "Checking",
+                    0
+                ],
+                [
+                    "Error",
+                    0
+                ]
+            ],
+            "tracker_host": [
+                [
+                    "All",
+                    3
+                ],
+                [
+                    "Error",
+                    0
+                ],
+                [
+                    "m-team.cc",
+                    3
+                ]
+            ]
+        }
+    },
+    "error": null
+}
+
+{"method":"core.resume_torrent","params":[["996742707808c73d7dd521002c2c7ad883042e06"]],"id":282}
+
+{"method":"web.get_events","params":[],"id":4221}

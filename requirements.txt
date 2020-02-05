@@ -1,3 +1,4 @@
+requests
 Click==7.0
 configparser==4.0.2
 feedparser==5.2.1

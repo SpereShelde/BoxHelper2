@@ -7,9 +7,9 @@ This is a new version of boxHelper based on python3. Unlike the previous version
 ## Usage
 
 ### Environment
-apt install python3
-apt install python3-pip
-pip3 install virtualenv
+`apt install python3`
+`apt install python3-pip`
+`pip3 install virtualenv`
 
 ### Install
 
